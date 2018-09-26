@@ -1,6 +1,9 @@
 [package]
-name = "Scheduler-rs"
+name = "scheduler-rs"
 version = "0.1.0"
 authors = ["Antonia Calia-Bogan <alfriadox@gmail.com>"]
 
 [dependencies]
+#rocket = "0.3.16"
+iron = "0.6.0" # Choosing iron over rocket for stability reasons.
+serde = "1.0.79"
