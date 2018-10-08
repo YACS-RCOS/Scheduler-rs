@@ -1,7 +1,3 @@
-use super::serde_json;
-use super::serde;
-#[macro_use]
-use super::serde_derive;
 
 #[derive(Eq, PartialEq, Clone, Serialize, Deserialize)]
 pub struct TimeSlot {
