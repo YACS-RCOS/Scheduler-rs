@@ -1,41 +1,39 @@
+pub use super::*;
 
-#[derive(Eq, PartialEq, Clone, Serialize, Deserialize)]
-pub struct TimeSlot {
-    pub weekday: WeekDay,
-    pub start_time: Time,
-    pub end_time: Time,
+pub use std::time::*;
+
+
+#[derive(Eq, Clone)]
+pub struct Event {
+    pub uuid: Uuid,
+    pub start: Duration,
+    pub duration: Duration,
+    pub repeat: Option<Duration>,
 }
 
-#[derive(Copy, Clone, PartialEq, Eq, Serialize, Deserialize)]
-pub enum WeekDay { Mon, Tues, Wed, Thur, Fri, Sat, Sun }
 
-#[derive(Copy, Clone, PartialEq, Eq, Serialize, Deserialize)]
-pub struct Time {
-    pub hour: u8,
-    pub minute: u8,
+#[derive(Clone,Eq)]
+pub struct ScheduleAbleOption {
+    pub uuid: Uuid,
+    pub events: Vec<Event>,
 }
 
-#[derive(Clone, Deserialize, Serialize)]
-pub struct Section {
-    pub number: u32,
-    pub instructors: Vec<String>,
-    pub time_slots: Vec<TimeSlot>,
-    pub preference: Option<f32>,
+#[derive(Clone, Eq)]
+pub struct ScheduleAble {
+    pub uuid: Uuid,
+    pub start: SystemTime,
+    pub duration: Duration,
+    pub options: Vec<ScheduleAbleOption>,
 }
 
-#[derive(Deserialize, Clone, Serialize)]
-pub struct ScheduleItem {
-    pub id: u32,
-    pub name: String,
-    pub ty: String,
-    pub sections: Vec<Section>,
-    pub preference: Option<f32>,
+impl ::std::cmp::PartialEq for ScheduleAble {
+    fn eq(&self, other: &Self) -> bool {other.uuid == self.uuid}
 }
 
-impl ::std::cmp::PartialEq for ScheduleItem {
-    fn eq(&self, other: &Self) -> bool {other.id == self.id}
+impl ::std::cmp::PartialEq for ScheduleAbleOption {
+    fn eq(&self, other: &Self) -> bool {other.uuid == self.uuid}
 }
 
-impl ::std::cmp::Eq for ScheduleItem {}
-
-pub type Schedule = (f32, Vec<ScheduleItem>);
+impl ::std::cmp::PartialEq for Event {
+    fn eq(&self, other: &Self) -> bool {other.uuid == self.uuid}
+}

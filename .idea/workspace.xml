@@ -10,9 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87df5199-53ce-4c95-a1e1-8296c022a20f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/empty.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/solver.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/mod.rs" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,24 +30,28 @@
     <session id="-916676157">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="20" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.4" value="4" />
           <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="3" />
           <entry key="project.open.time.7" value="2" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
           <entry key="md" value="1" />
-          <entry key="rs" value="5" />
+          <entry key="rs" value="8" />
           <entry key="test (disassembly)" value="1" />
           <entry key="toml" value="1" />
         </counts>
@@ -51,15 +61,15 @@
           <entry key="Disassembly" value="1" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Rust" value="5" />
+          <entry key="Rust" value="8" />
           <entry key="TOML file" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="md" value="7" />
-          <entry key="rs" value="3809" />
-          <entry key="toml" value="262" />
+          <entry key="rs" value="4449" />
+          <entry key="toml" value="280" />
           <entry key="txt" value="35" />
         </counts>
       </usages-collector>
@@ -67,8 +77,8 @@
         <counts>
           <entry key="Markdown" value="7" />
           <entry key="PLAIN_TEXT" value="35" />
-          <entry key="Rust" value="3809" />
-          <entry key="TOML file" value="262" />
+          <entry key="Rust" value="4449" />
+          <entry key="TOML file" value="280" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -80,46 +90,37 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cargo.toml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="36">
+              <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lib.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="4" selection-start-column="4" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/empty.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="13" selection-start-column="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="24" column="75" selection-start-line="24" selection-start-column="75" selection-end-line="24" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tests/mod.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/solver.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="17" selection-start-column="17" selection-end-column="17" />
-              <folding>
-                <element signature="e#119#120#0" expanded="true" />
-                <element signature="e#144#145#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model.rs">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="451">
+              <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -140,10 +141,12 @@
         <option value="$PROJECT_DIR$/tests/misc_tests.rs" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/tests/mod.rs" />
-        <option value="$PROJECT_DIR$/Cargo.toml" />
-        <option value="$PROJECT_DIR$/src/solver.rs" />
-        <option value="$PROJECT_DIR$/src/model.rs" />
         <option value="$PROJECT_DIR$/src/main.rs" />
+        <option value="$PROJECT_DIR$/tests/empty.rs" />
+        <option value="$PROJECT_DIR$/src/solver.rs" />
+        <option value="$PROJECT_DIR$/src/lib.rs" />
+        <option value="$PROJECT_DIR$/Cargo.toml" />
+        <option value="$PROJECT_DIR$/src/model.rs" />
       </list>
     </option>
   </component>
@@ -154,9 +157,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-509" />
     <option name="y" value="32" />
-    <option name="width" value="1920" />
-    <option name="height" value="1048" />
+    <option name="width" value="1430" />
+    <option name="height" value="792" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -175,6 +179,11 @@
               <item name="Scheduler-rs" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scheduler-rs" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Scheduler-rs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scheduler-rs" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -206,11 +215,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Cargo Command.check">
+  <component name="RunManager" selected="Cargo Command.test">
     <configuration name="build --release" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="build --release" />
-      <option name="nocapture" value="true" />
+      <option name="allFeatures" value="true" />
       <option name="backtrace" value="SHORT" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -219,7 +228,7 @@
     <configuration name="build" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="build" />
-      <option name="nocapture" value="true" />
+      <option name="allFeatures" value="true" />
       <option name="backtrace" value="SHORT" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -228,7 +237,7 @@
     <configuration name="check" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="check" />
-      <option name="nocapture" value="true" />
+      <option name="allFeatures" value="true" />
       <option name="backtrace" value="SHORT" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -237,7 +246,7 @@
     <configuration name="doc" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="doc" />
-      <option name="nocapture" value="true" />
+      <option name="allFeatures" value="true" />
       <option name="backtrace" value="SHORT" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -246,7 +255,7 @@
     <configuration name="run --release" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="run --release" />
-      <option name="nocapture" value="true" />
+      <option name="allFeatures" value="true" />
       <option name="backtrace" value="SHORT" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -255,7 +264,7 @@
     <configuration name="run" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="run" />
-      <option name="nocapture" value="true" />
+      <option name="allFeatures" value="true" />
       <option name="backtrace" value="SHORT" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -264,7 +273,7 @@
     <configuration name="test" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="test" />
-      <option name="nocapture" value="true" />
+      <option name="allFeatures" value="true" />
       <option name="backtrace" value="SHORT" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -302,22 +311,32 @@
       <workItem from="1538504021442" duration="5622000" />
       <workItem from="1538520545538" duration="1202000" />
       <workItem from="1538589300108" duration="597000" />
+      <workItem from="1539040381281" duration="606000" />
+      <workItem from="1539126684129" duration="956000" />
+      <workItem from="1539195150835" duration="1206000" />
+      <workItem from="1539225197301" duration="605000" />
+      <workItem from="1539269236389" duration="599000" />
+      <workItem from="1539369973858" duration="2937000" />
+      <workItem from="1539973645625" duration="1231000" />
+      <workItem from="1540139986385" duration="118000" />
+      <workItem from="1540230827679" duration="9000" />
+      <workItem from="1540230860037" duration="1533000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27554000" />
+    <option name="totallyTimeSpent" value="37354000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="32" width="1920" height="1048" extended-state="6" />
+    <frame x="0" y="32" width="1920" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13897763" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15282215" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946752" weight="0.31717598" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49893504" visible="true" weight="0.31624863" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991276" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -325,11 +344,11 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32899022" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005325" side_tool="true" weight="0.32899022" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50106496" side_tool="true" weight="0.31624863" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Cargo" order="3" />
+      <window_info anchor="right" id="Cargo" order="3" weight="0.171459" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
@@ -354,38 +373,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.rs" />
+    <entry file="file://$PROJECT_DIR$/src/tests/mod.rs" />
+    <entry file="file://$PROJECT_DIR$/src/solver.rs" />
     <entry file="file://$PROJECT_DIR$/Cargo.toml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="36">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/mod.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/solver.rs">
+    <entry file="file://$PROJECT_DIR$/src/lib.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-          <folding>
-            <element signature="e#119#120#0" expanded="true" />
-            <element signature="e#144#145#0" expanded="true" />
-          </folding>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/empty.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model.rs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="24" column="75" selection-start-line="24" selection-start-column="75" selection-end-line="24" selection-end-column="75" />
+        <state relative-caret-position="451">
+          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
         </state>
       </provider>
     </entry>
