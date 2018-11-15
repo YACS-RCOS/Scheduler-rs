@@ -1,9 +1,8 @@
-//use rayon::prelude::*;
-//use rayon::iter::ParallelIterator;
-use std::thread;
-use std::sync::mpsc;
+//use std::convert::*;
+//use std::sync::mpsc;
+//use std::thread;
 
-use std::convert::*;
+use rayon::prelude::*;
 use std::cmp::{min, max};
 
 #[derive(Eq, Serialize, Deserialize, Clone, Debug, Hash)]
@@ -30,8 +29,8 @@ pub struct Scheduleable {
 }
 
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
-struct InfoScheduleableOption {
-    inner: ScheduleableOption,
+struct InfoScheduleableOption<'option_lifetime> {
+    inner: &'option_lifetime ScheduleableOption,
     start: u64,
     end: u64,
 }
@@ -55,7 +54,7 @@ impl Scheduleable {
         self.options
             .iter()
             .map(|so| {InfoScheduleableOption{
-                inner: *so,
+                inner: so,
                 start: self.start,
                 end: self.get_end(),
             }})
@@ -63,40 +62,47 @@ impl Scheduleable {
     }
 }
 
-impl InfoScheduleableOption {
+impl<'a> InfoScheduleableOption<'a> {
 
     fn conflict(&self, other: &Self) -> bool {
         let start = max(self.start, other.start);
         let end = min(self.end, other.end);
         if end < start {false}
         else {
-            let mut current = start;
-            true
+            !self.inner.events.iter()
+                .any(|event| {
+                    other.inner.events.iter()
+                        .any(|event2| {
+                            event.contains_between(0, event2.offset, end-start) ||
+                            event.contains_between(0, event2.get_end(), end - start)
+                        })
+                })
         }
     }
 
     /// A ScheduleableOption is valid if none of its events conflict with each other.
+    /// This is unfortunately an O(n^2) operation.
     fn is_valid(&self) -> bool {
         self.inner.events.iter()
             .map(|event| (event, &self.inner.events))
             .all(|(event, ref vec)| {
                 !vec.iter()
                     .any(|event2| {
-                        event.contains_between()
+                        event.contains_between(0, event2.offset, self.end-self.start) ||
+                        event.contains_between(0, event2.get_end(), self.end-self.start)
                     })
             })
     }
 }
 
-impl ScheduleableOption {
-
-}
 
 impl Event {
     /// time is in unix time.
     pub fn contains(&self, time: u64, during: &Scheduleable) -> bool {
         return self.contains_between(during.start, time, during.get_end());
     }
+
+    pub fn get_end(&self) -> u64 {self.offset + self.duration}
 
     fn contains_between(&self, start: u64, time: u64, end: u64) -> bool {
         let mut mut_start = self.offset + start;
