@@ -2,7 +2,7 @@
 //use std::sync::mpsc;
 //use std::thread;
 
-use rayon::prelude::*;
+//use rayon::prelude::*;
 use std::cmp::{min, max};
 
 #[derive(Eq, Serialize, Deserialize, Clone, Debug, Hash)]
@@ -28,8 +28,10 @@ pub struct Scheduleable {
     pub options: Vec<ScheduleableOption>,
 }
 
+
+/// Labeled ScheduleabelOption, used in solver.
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
-struct InfoScheduleableOption<'option_lifetime> {
+pub struct InfoScheduleableOption<'option_lifetime> {
     inner: &'option_lifetime ScheduleableOption,
     start: u64,
     end: u64,
@@ -50,7 +52,8 @@ impl ::std::cmp::PartialEq for Event {
 impl Scheduleable {
     pub fn get_end(&self) -> u64 {self.start + self.duration}
 
-    fn label_options(&self) -> Vec<InfoScheduleableOption> {
+    /// Labels all of the ScheduleableOptions in self.options
+    pub fn label_options(&self) -> Vec<InfoScheduleableOption> {
         self.options
             .iter()
             .map(|so| {InfoScheduleableOption{
@@ -60,6 +63,12 @@ impl Scheduleable {
             }})
             .collect()
     }
+
+    /// Returns true if none of the ScheduleableOptions conflict with themselves.
+    pub fn is_valid(&self) -> bool {
+        self.label_options().iter().all(|iso| iso.is_valid())
+    }
+
 }
 
 impl<'a> InfoScheduleableOption<'a> {
@@ -69,12 +78,13 @@ impl<'a> InfoScheduleableOption<'a> {
         let end = min(self.end, other.end);
         if end < start {false}
         else {
+            let duration = end - start;
             !self.inner.events.iter()
                 .any(|event| {
                     other.inner.events.iter()
                         .any(|event2| {
-                            event.contains_between(0, event2.offset, end-start) ||
-                            event.contains_between(0, event2.get_end(), end - start)
+                            event.contains_between(0, event2.offset, duration) ||
+                            event.contains_between(0, event2.get_end(), duration)
                         })
                 })
         }
