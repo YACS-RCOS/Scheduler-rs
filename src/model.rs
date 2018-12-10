@@ -32,7 +32,7 @@ pub struct Scheduleable {
 /// Labeled ScheduleabelOption, used in solver.
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
 pub struct InfoScheduleableOption<'option_lifetime> {
-    inner: &'option_lifetime ScheduleableOption,
+    pub inner: &'option_lifetime ScheduleableOption,
     start: u64,
     end: u64,
 }
@@ -73,7 +73,8 @@ impl Scheduleable {
 
 impl<'a> InfoScheduleableOption<'a> {
 
-    fn conflict(&self, other: &Self) -> bool {
+    /// Check if two InfoSceduleableOptions conflict.
+    pub fn conflict(&self, other: &Self) -> bool {
         let start = max(self.start, other.start);
         let end = min(self.end, other.end);
         if end < start {false}
