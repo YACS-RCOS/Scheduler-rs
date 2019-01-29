@@ -18,6 +18,7 @@ pub struct Event {
 pub struct ScheduleableOption {
     pub uuid: String,
     pub events: Vec<Event>,
+    // future: ref Parent
 }
 
 #[derive(Clone, Eq, Serialize, Deserialize, Debug, Hash)]
@@ -56,8 +57,8 @@ impl Scheduleable {
     pub fn label_options(&self) -> Vec<InfoScheduleableOption> {
         self.options
             .iter()
-            .map(|so| {InfoScheduleableOption{
-                inner: so,
+            .map(|scheduleable_option| {InfoScheduleableOption{
+                inner: scheduleable_option,
                 start: self.start,
                 end: self.get_end(),
             }})

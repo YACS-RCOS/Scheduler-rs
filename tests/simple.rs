@@ -10,8 +10,6 @@ use serde_json::from_str;
 fn simple_test() {
     let class1: Scheduleable = from_str(r#"
     {
-        "uuid" : "1000",
-
     }
     "#).unwrap();
 }
