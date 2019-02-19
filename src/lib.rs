@@ -4,7 +4,8 @@
 // documentation
 
 //! # Scheduler-rs
-//! *A crate for solving course schedules*
+//! *A crate for solving course schedules.*
+//!
 //! *Part of [yacs](https://yacs.io/)*
 //!
 
