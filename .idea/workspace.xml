@@ -9,16 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87df5199-53ce-4c95-a1e1-8296c022a20f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/debug/.fingerprint/scheduler-rs-d15af6a85198cd98/doc-lib-scheduler-d15af6a85198cd98" beforeDir="false" afterPath="$PROJECT_DIR$/docs/debug/.fingerprint/scheduler-rs-d15af6a85198cd98/doc-lib-scheduler-d15af6a85198cd98" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/debug/.fingerprint/scheduler-rs-d15af6a85198cd98/doc-lib-scheduler-d15af6a85198cd98.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/debug/.fingerprint/scheduler-rs-d15af6a85198cd98/doc-lib-scheduler-d15af6a85198cd98.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/doc/aliases.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/doc/aliases.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/doc/source-files.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/doc/source-files.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="87df5199-53ce-4c95-a1e1-8296c022a20f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +22,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="126">
-                <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+              <first_editor relative-caret-position="414">
+                <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
               </first_editor>
               <second_editor />
             </state>
@@ -175,7 +166,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Cargo Command.build docs to gh-pages">
+  <component name="RunManager" selected="Cargo Command.test">
     <configuration name="build --release" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="build --release" />
@@ -364,7 +355,7 @@
       <workItem from="1550190450499" duration="598000" />
       <workItem from="1550546290121" duration="71000" />
       <workItem from="1550546378120" duration="4000" />
-      <workItem from="1550592368845" duration="7520000" />
+      <workItem from="1550592368845" duration="8115000" />
     </task>
     <servers />
   </component>
@@ -377,7 +368,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105339000" />
+    <option name="totallyTimeSpent" value="105934000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -390,9 +381,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="31" width="1920" height="1049" extended-state="7" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17075774" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17075774" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -401,7 +391,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32968238" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49893504" visible="true" weight="0.3154436" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49893504" visible="true" weight="0.3154436" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991276" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -534,8 +524,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="126">
-            <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+          <first_editor relative-caret-position="414">
+            <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
           </first_editor>
           <second_editor />
         </state>

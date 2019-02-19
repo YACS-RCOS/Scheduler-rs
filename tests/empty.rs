@@ -1,4 +1,4 @@
-extern crate scheduler_rs;
+extern crate scheduler;
 
 #[test]
 fn empty() {}
