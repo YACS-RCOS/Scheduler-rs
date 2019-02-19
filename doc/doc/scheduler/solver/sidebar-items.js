@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["solve","Returns a vector of all the possible non-conflicting sets of schedules."]]});
