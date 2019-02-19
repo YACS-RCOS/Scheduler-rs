@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Event","An event."],["InfoScheduleableOption","Labeled ScheduleabelOption, used in solver."],["Scheduleable","Something which can be scheduled."],["ScheduleableOption","An option for a scheduleable."]],"type":[["TimeUnit","Time type that we use, currently corresponds to seconds, or unix time."]]});
