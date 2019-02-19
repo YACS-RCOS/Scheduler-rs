@@ -1,11 +1,26 @@
 [package]
 name = "scheduler-rs"
-description = ""
-version = "0.0.0"
+description = "A crate for solving course/university schedules."
+version = "0.1.0"
 authors = ["Antonia Calia-Bogan <alfriadox@gmail.com>"]
+repository = "https://github.com/YACS-RCOS/Scheduler-rs"
 edition = "2018"
+license = "AGPL-3.0-or-later"
+publish = false
+#documentation = ""
+
+[lib]
+name = "scheduler"
+test = true
+doctest = true
+doc = true
 
 [dependencies]
 serde = "~1.0"
 serde_derive = "~1.0"
 serde_json = "~1.0"
+
+[badges]
+is-it-maintained-issue-resolution = { repository = "YACS-RCOS/Scheduler-rs" }
+is-it-maintained-open-issues = { repository = "YACS-RCOS/Scheduler-rs" }
+maintenance = { status = "actively-developed" }
