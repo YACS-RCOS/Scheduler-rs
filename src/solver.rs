@@ -1,4 +1,4 @@
-use super::model::*;
+use crate::model::*;
 
 /// Returns a vector of all the possible non-conflicting sets of schedules.
 pub fn solve(scheduleables: Vec<Scheduleable>) -> Vec<Vec<ScheduleableOption>> {
@@ -37,9 +37,6 @@ fn solve_rec<'lifetime>(scheduleables: &'lifetime [Scheduleable], current: Vec<I
                 .collect()
         },
         n => {
-            /*
-
-            */
             let mut possible_schedules = vec![];
             for i in 0..n {
                 let mut next_layer_of_possible_schedules = vec![];

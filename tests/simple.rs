@@ -1,5 +1,5 @@
-extern crate scheduler_rs;
-extern crate serde_json;
+use scheduler_rs;
+use serde_json;
 
 use scheduler_rs::model::*;
 use scheduler_rs::solver::solve;

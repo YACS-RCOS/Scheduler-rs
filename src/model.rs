@@ -1,31 +1,49 @@
-//use std::convert::*;
-//use std::sync::mpsc;
-//use std::thread;
-
-//use rayon::prelude::*;
 use std::cmp::{min, max};
 
+/// Time type that we use, currently corresponds to seconds, or unix time.
+pub type TimeUnit = u64;
+
+/// An event.
+///
+/// Ex:
+/// - A club meeting is an event.
+/// - A class in a course is an event.
+/// - A swimming meet is an event.
+/// - Fencing practice is an event.
 #[derive(Eq, Serialize, Deserialize, Clone, Debug, Hash)]
 pub struct Event {
     pub uuid: String,
     /// Offset from the start of the owning scheduleable.
-    pub offset: u64,
-    pub duration: u64,
-    pub repeat: u64,
+    pub offset: TimeUnit,
+    pub duration: TimeUnit,
+    /// Time from start -> start of next event
+    pub repeat: TimeUnit,
 }
 
+/// An option for a scheduleable.
+///
+/// Ex. A course is a scheduleable. A section of that course is one of its
+/// scheduleable options.
 #[derive(Clone, Eq, Serialize, Deserialize, Debug, Hash)]
 pub struct ScheduleableOption {
     pub uuid: String,
     pub events: Vec<Event>,
-    // future: ref Parent
 }
 
+/// Something which can be scheduled.
+///
+/// Ex:
+/// - A course is a scheduleable.
+/// - A a club is a scheduleable.
+/// - A sport is a scheduleable.
 #[derive(Clone, Eq, Serialize, Deserialize, Debug, Hash)]
 pub struct Scheduleable {
     pub uuid: String,
-    pub start: u64,
-    pub duration: u64,
+    pub start: TimeUnit,
+    /// Duration of this scheduleable.
+    /// This should be at least the difference between the start of this
+    /// scheduleable and the end of the last event or event repeat.
+    pub duration: TimeUnit,
     pub options: Vec<ScheduleableOption>,
 }
 
@@ -34,8 +52,8 @@ pub struct Scheduleable {
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
 pub struct InfoScheduleableOption<'option_lifetime> {
     pub inner: &'option_lifetime ScheduleableOption,
-    start: u64,
-    end: u64,
+    start: TimeUnit,
+    end: TimeUnit,
 }
 
 impl ::std::cmp::PartialEq for Scheduleable {
@@ -51,7 +69,8 @@ impl ::std::cmp::PartialEq for Event {
 }
 
 impl Scheduleable {
-    pub fn get_end(&self) -> u64 {self.start + self.duration}
+    /// This scheduleables start + duration.
+    pub fn get_end(&self) -> TimeUnit {self.start + self.duration}
 
     /// Labels all of the ScheduleableOptions in self.options
     pub fn label_options(&self) -> Vec<InfoScheduleableOption> {
@@ -66,9 +85,7 @@ impl Scheduleable {
     }
 
     /// Returns true if none of the ScheduleableOptions conflict with themselves.
-    pub fn is_valid(&self) -> bool {
-        self.label_options().iter().all(|iso| iso.is_valid())
-    }
+    pub fn is_valid(&self) -> bool { self.label_options().iter().all(|iso| iso.is_valid()) }
 
 }
 
@@ -109,14 +126,17 @@ impl<'a> InfoScheduleableOption<'a> {
 
 
 impl Event {
-    /// time is in unix time.
-    pub fn contains(&self, time: u64, during: &Scheduleable) -> bool {
-        return self.contains_between(during.start, time, during.get_end());
+    /// Check if this event or any of its repetitions within `during`
+    /// contain `time`.
+    pub fn contains(&self, time: TimeUnit, during: &Scheduleable) -> bool {
+        self.contains_between(during.start, time, during.get_end())
     }
 
-    pub fn get_end(&self) -> u64 {self.offset + self.duration}
+    /// This event's offset + duration.
+    pub fn get_end(&self) -> TimeUnit {self.offset + self.duration}
 
-    fn contains_between(&self, start: u64, time: u64, end: u64) -> bool {
+
+    fn contains_between(&self, start: TimeUnit, time: TimeUnit, end: TimeUnit) -> bool {
         let mut mut_start = self.offset + start;
         while mut_start < end {
             if mut_start <= time && mut_start + self.duration > time { return true }
