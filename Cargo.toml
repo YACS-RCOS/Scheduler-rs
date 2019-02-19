@@ -7,7 +7,8 @@ repository = "https://github.com/YACS-RCOS/Scheduler-rs"
 edition = "2018"
 license = "AGPL-3.0-or-later"
 publish = false
-#documentation = ""
+readme = "README.md"
+documentation = "https://yacs-rcos.github.io/Scheduler-rs/doc/scheduler/index.html"
 
 [lib]
 name = "scheduler"

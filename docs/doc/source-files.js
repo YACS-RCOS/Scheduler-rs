@@ -4,6 +4,7 @@ sourcesIndex['proc_macro2'] = {"name":"","dirs":[],"files":["lib.rs","stable.rs"
 sourcesIndex['quote'] = {"name":"","dirs":[],"files":["ext.rs","lib.rs","to_tokens.rs"]};
 sourcesIndex['ryu'] = {"name":"","dirs":[{"name":"buffer","dirs":[],"files":["mod.rs"]},{"name":"pretty","dirs":[],"files":["exponent.rs","mantissa.rs","mod.rs"]}],"files":["common.rs","d2s.rs","d2s_full_table.rs","d2s_intrinsics.rs","digit_table.rs","f2s.rs","lib.rs"]};
 sourcesIndex['scheduler'] = {"name":"","dirs":[],"files":["lib.rs","model.rs","solver.rs"]};
+sourcesIndex['scheduler'] = {"name":"","dirs":[],"files":["lib.rs","model.rs","solver.rs"]};
 sourcesIndex['serde'] = {"name":"","dirs":[{"name":"de","dirs":[],"files":["from_primitive.rs","ignored_any.rs","impls.rs","mod.rs","utf8.rs","value.rs"]},{"name":"private","dirs":[],"files":["de.rs","macros.rs","mod.rs","ser.rs"]},{"name":"ser","dirs":[],"files":["impls.rs","impossible.rs","mod.rs"]}],"files":["export.rs","integer128.rs","lib.rs","macros.rs"]};
 sourcesIndex['serde_derive'] = {"name":"","dirs":[{"name":"internals","dirs":[],"files":["ast.rs","attr.rs","case.rs","check.rs","ctxt.rs","mod.rs"]}],"files":["bound.rs","de.rs","fragment.rs","lib.rs","pretend.rs","ser.rs","try.rs"]};
 sourcesIndex['serde_json'] = {"name":"","dirs":[{"name":"value","dirs":[],"files":["de.rs","from.rs","index.rs","mod.rs","partial_eq.rs","ser.rs"]}],"files":["de.rs","error.rs","iter.rs","lib.rs","macros.rs","map.rs","number.rs","read.rs","ser.rs"]};

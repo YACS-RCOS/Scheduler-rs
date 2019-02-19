@@ -4,6 +4,7 @@ ALIASES['proc_macro2'] = {};
 ALIASES['quote'] = {};
 ALIASES['ryu'] = {};
 ALIASES['scheduler'] = {};
+ALIASES['scheduler'] = {};
 ALIASES['serde'] = {};
 ALIASES['serde_derive'] = {};
 ALIASES['serde_json'] = {};
