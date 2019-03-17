@@ -12,9 +12,11 @@ pub type TimeUnit = u64;
 /// - Fencing practice is an event.
 #[derive(Eq, Serialize, Deserialize, Clone, Debug, Hash)]
 pub struct Event {
+    /// Univserally unique id for this event
     pub uuid: String,
     /// Offset from the start of the owning scheduleable.
     pub offset: TimeUnit,
+    /// Duration of the event
     pub duration: TimeUnit,
     /// Time from start -> start of next event
     pub repeat: TimeUnit,
@@ -25,8 +27,10 @@ pub struct Event {
 /// Ex. A course is a scheduleable. A section of that course is one of its
 /// scheduleable options.
 #[derive(Clone, Eq, Serialize, Deserialize, Debug, Hash)]
-pub struct ScheduleableOption {
+pub struct ScheduleOption {
+    /// Universally unique id for this option
     pub uuid: String,
+    /// Events associated with this option
     pub events: Vec<Event>,
 }
 
@@ -37,30 +41,36 @@ pub struct ScheduleableOption {
 /// - A a club is a scheduleable.
 /// - A sport is a scheduleable.
 #[derive(Clone, Eq, Serialize, Deserialize, Debug, Hash)]
-pub struct Scheduleable {
+pub struct ScheduleList {
+    /// Universally unique id for this list
     pub uuid: String,
+    /// start time of first event of this schedule
     pub start: TimeUnit,
-    /// Duration of this scheduleable.
+    /// Duration of this schedule list.
     /// This should be at least the difference between the start of this
-    /// scheduleable and the end of the last event or event repeat.
+    /// schedule list and the end of the last event or event repeat.
     pub duration: TimeUnit,
-    pub options: Vec<ScheduleableOption>,
+    /// Options available in list
+    pub options: Vec<ScheduleOption>,
 }
 
 
 /// Labeled ScheduleabelOption, used in solver.
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
-pub struct InfoScheduleableOption<'option_lifetime> {
-    pub inner: &'option_lifetime ScheduleableOption,
+pub struct InfoScheduleOption<'option_lifetime> {
+    /// Options wrapped by this struct
+    pub inner: &'option_lifetime ScheduleOption,
+    /// Start as defined by schedule list
     start: TimeUnit,
+    /// End as defined by schedule list's start + duration
     end: TimeUnit,
 }
 
-impl ::std::cmp::PartialEq for Scheduleable {
+impl ::std::cmp::PartialEq for ScheduleList {
     fn eq(&self, other: &Self) -> bool {other.uuid == self.uuid}
 }
 
-impl ::std::cmp::PartialEq for ScheduleableOption {
+impl ::std::cmp::PartialEq for ScheduleOption {
     fn eq(&self, other: &Self) -> bool {other.uuid == self.uuid}
 }
 
@@ -68,15 +78,15 @@ impl ::std::cmp::PartialEq for Event {
     fn eq(&self, other: &Self) -> bool {other.uuid == self.uuid}
 }
 
-impl Scheduleable {
+impl ScheduleList {
     /// This scheduleables start + duration.
     pub fn get_end(&self) -> TimeUnit {self.start + self.duration}
 
-    /// Labels all of the ScheduleableOptions in self.options
-    pub fn label_options(&self) -> Vec<InfoScheduleableOption> {
+    /// Labels all of the ScheduleOptions in self.options
+    pub fn label_options(&self) -> Vec<InfoScheduleOption> {
         self.options
             .iter()
-            .map(|scheduleable_option| {InfoScheduleableOption{
+            .map(|scheduleable_option| {InfoScheduleOption{
                 inner: scheduleable_option,
                 start: self.start,
                 end: self.get_end(),
@@ -84,12 +94,12 @@ impl Scheduleable {
             .collect()
     }
 
-    /// Returns true if none of the ScheduleableOptions conflict with themselves.
+    /// Returns true if none of the ScheduleOptions conflict with themselves.
     pub fn is_valid(&self) -> bool { self.label_options().iter().all(|iso| iso.is_valid()) }
 
 }
 
-impl<'a> InfoScheduleableOption<'a> {
+impl<'a> InfoScheduleOption<'a> {
 
     /// Check if two InfoSceduleableOptions conflict.
     pub fn conflict(&self, other: &Self) -> bool {
@@ -109,7 +119,7 @@ impl<'a> InfoScheduleableOption<'a> {
         }
     }
 
-    /// A ScheduleableOption is valid if none of its events conflict with each other.
+    /// A ScheduleOption is valid if none of its events conflict with each other.
     /// This is unfortunately an O(n^2) operation.
     fn is_valid(&self) -> bool {
         self.inner.events.iter()
@@ -128,7 +138,7 @@ impl<'a> InfoScheduleableOption<'a> {
 impl Event {
     /// Check if this event or any of its repetitions within `during`
     /// contain `time`.
-    pub fn contains(&self, time: TimeUnit, during: &Scheduleable) -> bool {
+    pub fn contains(&self, time: TimeUnit, during: &ScheduleList) -> bool {
         self.contains_between(during.start, time, during.get_end())
     }
 
