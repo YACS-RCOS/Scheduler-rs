@@ -1,4 +1,5 @@
-use std::cmp::{min, max};
+use std::cmp::PartialEq;
+use std::cmp::{max, min};
 
 /// Time type that we use, currently corresponds to seconds, or unix time.
 pub type TimeUnit = u64;
@@ -14,7 +15,7 @@ pub type TimeUnit = u64;
 pub struct Event {
     /// Univserally unique id for this event
     pub uuid: String,
-    /// Offset from the start of the owning scheduleable.
+    /// Offset from the start of the owning schedule.
     pub offset: TimeUnit,
     /// Duration of the event
     pub duration: TimeUnit,
@@ -22,10 +23,10 @@ pub struct Event {
     pub repeat: TimeUnit,
 }
 
-/// An option for a scheduleable.
+/// An option for a schedule.
 ///
-/// Ex. A course is a scheduleable. A section of that course is one of its
-/// scheduleable options.
+/// Ex. A course is a schedule. A section of that course is one of its
+/// options.
 #[derive(Clone, Eq, Serialize, Deserialize, Debug, Hash)]
 pub struct ScheduleOption {
     /// Universally unique id for this option
@@ -37,9 +38,9 @@ pub struct ScheduleOption {
 /// Something which can be scheduled.
 ///
 /// Ex:
-/// - A course is a scheduleable.
-/// - A a club is a scheduleable.
-/// - A sport is a scheduleable.
+/// - A course is a schedule.
+/// - A a club is a schedule.
+/// - A sport is a schedule.
 #[derive(Clone, Eq, Serialize, Deserialize, Debug, Hash)]
 pub struct ScheduleList {
     /// Universally unique id for this list
@@ -54,8 +55,7 @@ pub struct ScheduleList {
     pub options: Vec<ScheduleOption>,
 }
 
-
-/// Labeled ScheduleabelOption, used in solver.
+/// Labeled ScheduleOption, used in solver.
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
 pub struct InfoScheduleOption<'option_lifetime> {
     /// Options wrapped by this struct
@@ -66,74 +66,81 @@ pub struct InfoScheduleOption<'option_lifetime> {
     end: TimeUnit,
 }
 
-impl ::std::cmp::PartialEq for ScheduleList {
-    fn eq(&self, other: &Self) -> bool {other.uuid == self.uuid}
+impl PartialEq for ScheduleList {
+    fn eq(&self, other: &Self) -> bool {
+        other.uuid == self.uuid
+    }
 }
 
-impl ::std::cmp::PartialEq for ScheduleOption {
-    fn eq(&self, other: &Self) -> bool {other.uuid == self.uuid}
+impl PartialEq for ScheduleOption {
+    fn eq(&self, other: &Self) -> bool {
+        other.uuid == self.uuid
+    }
 }
 
-impl ::std::cmp::PartialEq for Event {
-    fn eq(&self, other: &Self) -> bool {other.uuid == self.uuid}
+impl PartialEq for Event {
+    fn eq(&self, other: &Self) -> bool {
+        other.uuid == self.uuid
+    }
 }
 
 impl ScheduleList {
-    /// This scheduleables start + duration.
-    pub fn get_end(&self) -> TimeUnit {self.start + self.duration}
+    /// This schedule's start + duration.
+    pub fn get_end(&self) -> TimeUnit {
+        self.start + self.duration
+    }
 
     /// Labels all of the ScheduleOptions in self.options
     pub fn label_options(&self) -> Vec<InfoScheduleOption> {
         self.options
             .iter()
-            .map(|scheduleable_option| {InfoScheduleOption{
-                inner: scheduleable_option,
+            .map(|option| InfoScheduleOption {
+                inner: option,
                 start: self.start,
                 end: self.get_end(),
-            }})
+            })
             .collect()
     }
 
     /// Returns true if none of the ScheduleOptions conflict with themselves.
-    pub fn is_valid(&self) -> bool { self.label_options().iter().all(|iso| iso.is_valid()) }
-
+    pub fn is_valid(&self) -> bool {
+        self.label_options().iter().all(|iso| iso.is_valid())
+    }
 }
 
 impl<'a> InfoScheduleOption<'a> {
-
-    /// Check if two InfoSceduleableOptions conflict.
+    /// Check if two InfoSceduleOptions conflict.
     pub fn conflict(&self, other: &Self) -> bool {
         let start = max(self.start, other.start);
         let end = min(self.end, other.end);
-        if end < start {false}
-        else {
+        if end < start {
+            false
+        } else {
             let duration = end - start;
-            !self.inner.events.iter()
-                .any(|event| {
-                    other.inner.events.iter()
-                        .any(|event2| {
-                            event.contains_between(0, event2.offset, duration) ||
-                            event.contains_between(0, event2.get_end(), duration)
-                        })
+            !self.inner.events.iter().any(|event| {
+                other.inner.events.iter().any(|event2| {
+                    event.contains_between(0, event2.offset, duration)
+                        || event.contains_between(0, event2.get_end(), duration)
                 })
+            })
         }
     }
 
     /// A ScheduleOption is valid if none of its events conflict with each other.
     /// This is unfortunately an O(n^2) operation.
     fn is_valid(&self) -> bool {
-        self.inner.events.iter()
+        self.inner
+            .events
+            .iter()
             .map(|event| (event, &self.inner.events))
             .all(|(event, ref vec)| {
-                !vec.iter()
-                    .any(|event2| {
-                        event.contains_between(0, event2.offset, self.end-self.start) ||
-                        event.contains_between(0, event2.get_end(), self.end-self.start)
-                    })
+                !vec.iter().any(|event2| {
+                    event.contains_between(0, event2.offset, self.end - self.start)
+                        || event.contains_between(0, event2.get_end(), self.end - self.start)
+                })
             })
     }
 }
-
 
 impl Event {
     /// Check if this event or any of its repetitions within `during`
@@ -143,17 +150,22 @@ impl Event {
     }
 
     /// This event's offset + duration.
-    pub fn get_end(&self) -> TimeUnit {self.offset + self.duration}
+    pub fn get_end(&self) -> TimeUnit {
+        self.offset + self.duration
+    }
 
-
+    /// Check if
     fn contains_between(&self, start: TimeUnit, time: TimeUnit, end: TimeUnit) -> bool {
-        let mut mut_start = self.offset + start;
-        while mut_start < end {
-            if mut_start <= time && mut_start + self.duration > time { return true }
-                else if self.repeat != 0 { mut_start += self.repeat; }
-                    else { return false }
+        let mut start = self.offset + start;
+        while start < end {
+            if start <= time && start + self.duration > time {
+                return true;
+            } else if self.repeat != 0 {
+                start += self.repeat;
+            } else {
+                return false;
+            }
         }
         false
     }
-
 }

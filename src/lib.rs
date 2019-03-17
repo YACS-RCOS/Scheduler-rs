@@ -13,7 +13,7 @@
 pub use serde;
 #[macro_use]
 extern crate serde_derive;
-pub use serde::{Serialize, Deserialize};
+pub use serde::{Deserialize, Serialize};
 
 /// ## The model module
 /// This module contains the data model and structures for storing schedules
