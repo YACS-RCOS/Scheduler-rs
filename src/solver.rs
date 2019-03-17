@@ -16,38 +16,42 @@ fn solve_rec<'lifetime>(
     match schedules.len() {
         0 => vec![current],
         1 => {
+            // TODO Maybe this should just be a subroutine?
+            // Seems unnecessary to make it recursive, and we just incur more
+            // overhead from the match statement
             /*
             Filter out any schedule option that conflict with anything in the current
             list of schedule_options.
             Push all the schedule options that don't conflict with the current schedule
             onto clones of the current schedule and return all of the modified clones.
             */
-            schedules
+            schedules // TODO Maybe this could be simpler? i.e. do we need to label options every time?
                 .last()
                 .unwrap()
                 .label_options()
                 .iter()
-                .filter(|schedule_option| {
-                    !current.iter().any(|currently_selected_schedule_option| {
-                        currently_selected_schedule_option.conflict(schedule_option)
+                .filter(|option| {
+                    !current.iter().any(|current_option| {
+                        current_option.conflict(option)
                     })
                 })
-                .map(|non_conflicting_schedule_option| {
+                .map(|option| {
                     let mut vec = current.clone();
-                    vec.push(non_conflicting_schedule_option.clone());
+                    vec.push(option.clone());
                     vec
                 })
                 .collect()
         }
         n => {
+            // TODO Is this correct?
             let mut possible_schedules = vec![];
             for i in 0..n {
-                let mut next_layer_of_possible_schedules = vec![];
+                // TODO Is this correct?
+                let mut next_layer = vec![];
                 for schedule in possible_schedules {
-                    let mut some_possible_schedules = solve_rec(&schedules[i..i + 1], schedule);
-                    next_layer_of_possible_schedules.append(&mut some_possible_schedules);
+                    next_layer.append(&mut solve_rec(&schedules[i..i + 1], schedule));
                 }
-                possible_schedules = next_layer_of_possible_schedules;
+                possible_schedules = next_layer;
             }
             possible_schedules
         }
