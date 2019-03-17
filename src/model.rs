@@ -154,7 +154,7 @@ impl Event {
         self.offset + self.duration
     }
 
-    /// Check if
+    /// Check if `time` happens during one of the repetitions of this event
     fn contains_between(&self, start: TimeUnit, time: TimeUnit, end: TimeUnit) -> bool {
         let mut start = self.offset + start;
         while start < end {

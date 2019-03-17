@@ -31,9 +31,9 @@ fn solve_rec<'lifetime>(
                 .label_options()
                 .iter()
                 .filter(|option| {
-                    !current.iter().any(|current_option| {
-                        current_option.conflict(option)
-                    })
+                    !current
+                        .iter()
+                        .any(|current_option| current_option.conflict(option))
                 })
                 .map(|option| {
                     let mut vec = current.clone();
