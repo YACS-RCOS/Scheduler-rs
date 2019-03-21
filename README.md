@@ -1,11 +1,12 @@
 # Scheduler-rs
 > *A university schedule solver written in Rust.*
 
+
 *Part of [yacs](https://yacs.io/)*
 
 [![Build Status](https://travis-ci.org/YACS-RCOS/Scheduler-rs.svg?branch=master)](
     https://travis-ci.org/YACS-RCOS/Scheduler-rs)
-    
+
 [![Documentation](https://img.shields.io/badge/docs-blue.svg)](
     https://yacs-rcos.github.io/Scheduler-rs/doc/scheduler/index.html)
 
@@ -21,4 +22,16 @@
     https://img.shields.io/badge/minimum_rust_version-stable-orange.svg)](
     https://www.rust-lang.org/)
 
+
+### Contributing
+- Download rust
+- Make a fork
+- Clone repository with `git clone https://github.com/YOUR_USERNAME/Scheduler-rs.git`
+- Make edits
+- Open pull request
+
+### File Structure
+- `lib.rs` - External API
+- `solver.rs` - Does math to solve an arbitrary set of schedules
+- `model.rs` - Internal API's to objects in library
 
