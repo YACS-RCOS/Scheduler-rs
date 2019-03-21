@@ -13,6 +13,7 @@ pub const WEEK: TimeUnit = 7 * HOUR;
 
 mod event;
 mod schedule;
+pub use crate::model::*;
+pub use crate::model::Event as ApiEvent;
 pub use self::event::Event;
 pub use self::schedule::Schedule;
-

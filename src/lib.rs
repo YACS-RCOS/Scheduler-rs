@@ -24,3 +24,6 @@ pub mod model;
 /// This module contains methods for solving producing valid schedules based on
 /// lists of Scheduleables. (See module level documentation)
 pub mod solver;
+
+/// ## The Private Models used in computation
+pub mod models;

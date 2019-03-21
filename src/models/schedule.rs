@@ -1,4 +1,4 @@
-use super::{/*TimeUnit,*/ Event};
+use super::*;
 use std::cmp::PartialEq;
 use itertools::Itertools;
 use std::collections::HashMap;
@@ -23,7 +23,6 @@ impl PartialEq for ScheduleState {
         return self == other
     }
 }
-
 
 /// An unordered set of events.
 /// Underlying data structure is sorted
@@ -139,15 +138,7 @@ impl Schedule {
     }
 
     fn sort_items(&mut self) {
-        // TODO
         self.events.sort_by(|a, b| a.start().cmp(&b.start()));
-    }
-
-    /// Returns whether or not this object is compatible
-    /// with another object of the same type
-    pub fn compatible_with(&self, _other: &Self) -> bool {
-        // TODO
-        false
     }
 
 }
