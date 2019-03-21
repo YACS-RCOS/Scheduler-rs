@@ -20,6 +20,7 @@ doc = true
 serde = "~1.0"
 serde_derive = "~1.0"
 serde_json = "~1.0"
+itertools = "0.8.0"
 
 [badges]
 is-it-maintained-issue-resolution = { repository = "YACS-RCOS/Scheduler-rs" }
