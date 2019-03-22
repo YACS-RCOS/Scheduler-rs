@@ -58,7 +58,7 @@ impl Schedule {
     /// New Schedule as composition of other schedules
     /// Schedule returned will already be sorted by time,
     /// but will NOT be validated.
-    pub fn compose(schedules: &Vec<Schedule>) -> Schedule {
+    pub fn compose(schedules: &Vec<&Schedule>) -> Schedule {
 
         let mut uuid_count = 0;
         let mut unique_uuids: HashMap<String,u16> = HashMap::new();

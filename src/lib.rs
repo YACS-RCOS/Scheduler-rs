@@ -27,3 +27,7 @@ pub mod solver;
 
 /// ## The Private Models used in computation
 pub mod models;
+
+/// ## Solver module, with implementation using private library instead
+/// of public serialization stuff
+pub mod solve;
