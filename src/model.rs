@@ -12,9 +12,11 @@ pub type TimeUnit = u64;
 /// - Fencing practice is an event.
 #[derive(Eq, Serialize, Deserialize, Clone, Debug, Hash)]
 pub struct Event {
+    /// UUID string provided by YACS
     pub uuid: String,
     /// Offset from the start of the owning scheduleable.
     pub offset: TimeUnit,
+    /// Duration of event
     pub duration: TimeUnit,
     /// Time from start -> start of next event
     pub repeat: TimeUnit,
@@ -26,7 +28,9 @@ pub struct Event {
 /// scheduleable options.
 #[derive(Clone, Eq, Serialize, Deserialize, Debug, Hash)]
 pub struct ScheduleableOption {
+    /// UUID string provided by YACS
     pub uuid: String,
+    /// Events in this option
     pub events: Vec<Event>,
 }
 
@@ -38,12 +42,16 @@ pub struct ScheduleableOption {
 /// - A sport is a scheduleable.
 #[derive(Clone, Eq, Serialize, Deserialize, Debug, Hash)]
 pub struct Scheduleable {
+    /// UUID string provided by YACS
     pub uuid: String,
+    /// Start time of schedule; maintain the invariant that the events of this
+    /// schedulable's options all happen at or after this time
     pub start: TimeUnit,
     /// Duration of this scheduleable.
     /// This should be at least the difference between the start of this
     /// scheduleable and the end of the last event or event repeat.
     pub duration: TimeUnit,
+    /// potential permutations of this scheduleable
     pub options: Vec<ScheduleableOption>,
 }
 
@@ -51,8 +59,11 @@ pub struct Scheduleable {
 /// Labeled ScheduleabelOption, used in solver.
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
 pub struct InfoScheduleableOption<'option_lifetime> {
+    /// Data of this struct
     pub inner: &'option_lifetime ScheduleableOption,
+    /// Start from this struct's parent scheduleble
     start: TimeUnit,
+    /// End of this struct's parent scheduleable
     end: TimeUnit,
 }
 
