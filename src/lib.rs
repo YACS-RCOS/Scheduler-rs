@@ -10,9 +10,8 @@
 //!
 
 /// We use serde for Serialization / Deserialization
-pub use serde;
 #[macro_use]
-extern crate serde_derive;
+pub extern crate  serde;
 pub use serde::{Serialize, Deserialize};
 
 /// ## The model module

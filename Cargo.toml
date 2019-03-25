@@ -17,9 +17,7 @@ doctest = true
 doc = true
 
 [dependencies]
-serde = "~1.0"
-serde_derive = "~1.0"
-serde_json = "~1.0"
+serde = { version = "~1.0", features = ["derive"] }
 
 [badges]
 is-it-maintained-issue-resolution = { repository = "YACS-RCOS/Scheduler-rs" }
