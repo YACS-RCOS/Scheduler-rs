@@ -52,8 +52,8 @@ pub struct Scheduleable {
 #[derive(Clone, Eq, PartialEq, Debug, Hash)]
 pub struct InfoScheduleableOption<'option_lifetime> {
     pub inner: &'option_lifetime ScheduleableOption,
-    start: TimeUnit,
-    end: TimeUnit,
+    pub(crate) start: TimeUnit,
+    pub(crate) end: TimeUnit,
 }
 
 impl ::std::cmp::PartialEq for Scheduleable {

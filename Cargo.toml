@@ -18,6 +18,7 @@ doc = true
 
 [dependencies]
 serde = { version = "~1.0", features = ["derive"] }
+crossbeam = "0.7"
 
 [badges]
 is-it-maintained-issue-resolution = { repository = "YACS-RCOS/Scheduler-rs" }
