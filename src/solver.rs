@@ -1,75 +1,98 @@
-use crate::model::TimeUnit;
+use crate::model::{
+    TimeUnit,
+    ApiScheduleable,
+    ApiScheduleableOption
+};
 
+use std::{
+    collections::{
+        HashMap,
+        HashSet
+    },
+    ops::Range
+};
 
-#[derive(Copy, Clone, Eq, PartialEq)]
+/// Serial Identifiers/Indexes for Elements and ElementOptions.
+type ID = u32;
+
+#[derive(Debug, Clone, Hash)]
 struct Event {
-    start: TimeUnit,
-    duration: TimeUnit,
+    inner: Range<TimeUnit>,
+    /// ID of the ElementOption of this event
+    id: ID,
 }
 
 impl Event {
-    fn new(start: TimeUnit, dur: TimeUnit) -> Self {
-        Event {start, duration: dur}
-    }
-    fn end(&self) -> TimeUnit {self.start+self.duration}
-
-    fn conflict(a: &Self, b: &Self) -> bool {
-        (a.start >= b.start && a.start <= b.end()) ||
-        (b.start >= a.start && b.start <= a.end())
-    }
-
-    fn is_before(&self, b: &Self) -> bool {
-        self.end() < b.start
-    }
-
-    fn is_after(&self, b: &Self) -> bool {
-        b.is_before(self)
-    }
-}
-
-type Element = Vec<ElementOption>;
-type ElementOption = Vec<Event>;
-
-// O(n log n)
-fn eo_sort_rev(mut eo: ElementOption) -> ElementOption {
-    eo.sort_unstable_by_key(|ev| ev.start);
-    eo.reverse();
-    eo
-}
-
-fn eo_conflict_base(eo1: &ElementOption, eo2: &ElementOption) -> bool {
-    let mut sorted1 = eo_sort_rev(eo1.clone());
-    let mut sorted2 = eo_sort_rev(eo1.clone());
-    return eo_conflict(&mut sorted1, &mut sorted2);
-}
-
-// for lists of lengths n and m, this function is O(max(n,m)) (?)
-// this function assumes that both arguments are in reverse sorted order by
-// event start time.
-fn eo_conflict(eo1: &mut ElementOption, eo2: &mut ElementOption) -> bool {
-    let oa = eo1.pop();
-    let ob = eo2.pop();
-    if oa.is_none() || ob.is_none() {return false;}
-    else {
-        let a = oa.unwrap();
-        let b = ob.unwrap();
-        if Event::conflict(&a,&b) {return true;}
-        else if a.is_before(&b) {
-            eo2.push(b);
-            return eo_conflict(eo1, eo2);
+    /// Construct new event
+    pub const fn new(start: TimeUnit, dur: TimeUnit, id: ID) -> Self {
+        Event {
+            inner: start..start+dur,
+            id
         }
-        else if a.is_after(&b) {
-            eo1.push(a);
-            return eo_conflict(eo1, eo2);
-        } else {panic!("could not determine ElementOption conflict.");}
+    }
+
+    /// If either event contains the other ones start then they conflict.
+    pub fn conflict(a: &Self, b: &Self) -> bool {
+        a.inner.contains(&b.inner.start) ||
+        b.inner.contains(&a.inner.start)
+    }
+
+    #[allow(missing_docs)]
+    #[inline]
+    pub const fn is_before(&self, other: &Self) -> bool {
+        other.inner.start >= self.inner.end
+    }
+
+    #[allow(missing_docs)]
+    #[inline]
+    pub const fn is_after(&self, other: &Self) -> bool {
+        self.inner.start >= other.inner.end
     }
 }
 
+#[derive(Debug)]
+struct ElementOption {
+    conflicts: HashSet<ID>,
+    inner: Vec<Event>,
+    id: ID,
+    elem_id: ID,
+}
 
+#[derive(Debug)]
+struct Element {
+    id: ID,
+    option_range: Range<ID>,
+}
+
+#[derive(Debug)]
+pub struct Solver {
+    next_id: ID,
+    /// Map serial IDs to UUIDs.
+    id_map: HashMap<ID, String>,
+    elements: Vec<Element>,
+    options: Vec<ElementOption>,
+
+}
+
+impl Solver {
+    /// Construct new Solver.
+    pub fn new() -> Self {
+        Solver {
+            next_id: 0,
+            id_map: HashMap::new(),
+            elements: Vec::new(),
+            options: Vec::new(),
+        }
+    }
+
+    /// Add scheduleable from Api into this Solver.
+    pub fn add_scheduleable(&mut self, scheduleable: ApiScheduleable) {
+        unimplemented!()
+    }
+}
 
 /// Returns a vector of all the possible non-conflicting (partial and full)
 /// sets of schedules.
 pub fn solve(scheduleables: Vec<ApiScheduleable>) -> Vec<Vec<ApiScheduleableOption>> {
-
     unimplemented!()
 }

@@ -1,4 +1,4 @@
-use std::cmp::{min, max, PartialEq};
+use std::cmp::PartialEq;
 
 /// Time type that we use, currently corresponds to seconds, or unix time.
 pub type TimeUnit = u64;
@@ -65,29 +65,4 @@ impl ApiScheduleable {
     /// Get the end of an `ApiScheduleable`.
     #[inline]
     pub fn get_end(&self) -> TimeUnit {self.start + self.duration}
-}
-
-// other method implementations
-
-impl ApiEvent {
-    /// Check if this event or any of its repetitions within `during`
-    /// contain `time`.
-    pub fn contains(&self, time: TimeUnit, during: &ApiScheduleable) -> bool {
-        self.contains_between(during.start, time, during.get_end())
-    }
-
-    /// This event's offset + duration.
-    pub fn get_end(&self) -> TimeUnit {self.offset + self.duration}
-
-
-    fn contains_between(&self, start: TimeUnit, time: TimeUnit, end: TimeUnit) -> bool {
-        let mut mut_start = self.offset + start;
-        while mut_start < end {
-            if mut_start <= time && mut_start + self.duration > time { return true }
-                else if self.repeat != 0 { mut_start += self.repeat; }
-                    else { return false }
-        }
-        false
-    }
-
 }
