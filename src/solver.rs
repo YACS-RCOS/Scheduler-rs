@@ -1,17 +1,4 @@
-use crate::model::Scheduleable;
-use crate::model::InfoScheduleableOption;
-use crate::model::ScheduleableOption;
 use crate::model::TimeUnit;
-use crate::model::Event as RepeatEvent;
-
-use std::thread;
-use std::sync::mpsc;
-
-use std::sync::Arc;
-
-use crossbeam::channel;
-use std::collections::{HashMap, HashSet};
-use std::cmp::Ordering;
 
 
 #[derive(Copy, Clone, Eq, PartialEq)]
@@ -82,7 +69,7 @@ fn eo_conflict(eo1: &mut ElementOption, eo2: &mut ElementOption) -> bool {
 
 /// Returns a vector of all the possible non-conflicting (partial and full)
 /// sets of schedules.
-pub fn solve(scheduleables: Vec<Scheduleable>) -> Vec<Vec<ScheduleableOption>> {
+pub fn solve(scheduleables: Vec<ApiScheduleable>) -> Vec<Vec<ApiScheduleableOption>> {
 
     unimplemented!()
 }

@@ -11,7 +11,7 @@
 
 /// We use serde for Serialization / Deserialization
 #[macro_use]
-pub extern crate  serde;
+pub extern crate serde;
 pub use serde::{Serialize, Deserialize};
 
 /// ## The model module
